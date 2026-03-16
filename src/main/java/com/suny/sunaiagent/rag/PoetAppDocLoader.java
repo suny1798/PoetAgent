@@ -51,7 +51,7 @@ public class PoetAppDocLoader {
      * @return
      */
     public List<Document> splitCustomized(List<Document> documents) {
-        TokenTextSplitter splitter = new TokenTextSplitter(100, 20, 10, 5000, true);
+        TokenTextSplitter splitter = new TokenTextSplitter(10000, 20, 10, 5000, true);
         return splitter.apply(documents);
     }
 

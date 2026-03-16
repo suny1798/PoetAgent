@@ -78,10 +78,9 @@ public class ToolCallAgent extends ReActAgent{
             //处理结果
             log.info(getName() + "的思考结果：" + result);
             log.info(getName() + "的调用工具列表：" + toolCallList);
-
+            getMessageList().add(assistantMessage);
             //工具调用列表为空，则直接返回结果
             if (toolCallList.isEmpty()) {
-                getMessageList().add(assistantMessage);
                 return false;
             } else {
                 return true;
