@@ -10,27 +10,46 @@
       </div>
     </div>
 
+    <div class="chat-header-row">
+      <div class="chat-tags">
+        <span class="tag">SSE 实时对话</span>
+        <span class="tag">多轮上下文</span>
+      </div>
+      <div class="chat-hint">按 Enter 发送，Shift+Enter 换行</div>
+    </div>
+
     <div class="chat-body">
       <div ref="scrollContainer" class="chat-messages">
-        <div
-          v-for="msg in messages"
-          :key="msg.id"
-          class="chat-message-row"
-          :class="msg.role === 'user' ? 'is-user' : 'is-ai'"
-        >
-          <div class="avatar" :class="msg.role === 'user' ? 'avatar-user' : 'avatar-ai'">
-            <span v-if="msg.role === 'user'">你</span>
-            <span v-else>AI</span>
-          </div>
-          <div class="bubble">
-            <div class="bubble-content">
-              <div class="message-text">{{ msg.content }}</div>
-            </div>
-            <div class="bubble-meta">
-              <span>{{ msg.role === 'user' ? '用户' : '智能体' }}</span>
-            </div>
-          </div>
+        <div v-if="!messages.length && !loading" class="empty-state">
+          <div class="empty-illustration"></div>
+          <h3>还没有对话</h3>
+          <p>从右下角输入你的问题，和智能体开始一段对话吧。</p>
+          <ul>
+            <li>试试描述一个你正在思考的问题</li>
+            <li>或者让它帮你写一首诗 / 规划一个任务</li>
+          </ul>
         </div>
+        <template v-else>
+          <div
+            v-for="msg in messages"
+            :key="msg.id"
+            class="chat-message-row"
+            :class="msg.role === 'user' ? 'is-user' : 'is-ai'"
+          >
+            <div class="avatar" :class="msg.role === 'user' ? 'avatar-user' : 'avatar-ai'">
+              <span v-if="msg.role === 'user'">你</span>
+              <span v-else>AI</span>
+            </div>
+            <div class="bubble">
+              <div class="bubble-content">
+                <div class="message-text">{{ msg.content }}</div>
+              </div>
+              <div class="bubble-meta">
+                <span>{{ msg.role === 'user' ? '用户' : '智能体' }}</span>
+              </div>
+            </div>
+          </div>
+        </template>
         <div v-if="loading" class="typing">
           AI 正在思考中……
         </div>
@@ -111,7 +130,7 @@ onBeforeUnmount(() => {
 .chat-page {
   max-width: 960px;
   margin: 0 auto;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
 }
@@ -152,15 +171,103 @@ onBeforeUnmount(() => {
   flex-direction: column;
   border-radius: 18px;
   border: 1px solid #e2e8f0;
-  background: #ffffff;
+  background: radial-gradient(circle at top left, #e0f2fe, transparent 55%),
+    radial-gradient(circle at bottom right, #f1f5f9, transparent 55%), #ffffff;
   backdrop-filter: blur(8px);
   overflow: hidden;
+}
+
+.chat-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.chat-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.chat-hint {
+  text-align: right;
 }
 
 .chat-messages {
   flex: 1;
   padding: 16px;
   overflow-y: auto;
+}
+
+.empty-state {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #64748b;
+  gap: 8px;
+}
+
+.empty-illustration {
+  width: 120px;
+  height: 80px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #e0f2fe, #f1f5f9);
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.empty-illustration::before,
+.empty-illustration::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.empty-illustration::before {
+  width: 42px;
+  height: 26px;
+  left: 14px;
+  top: 22px;
+}
+
+.empty-illustration::after {
+  width: 32px;
+  height: 22px;
+  right: 16px;
+  bottom: 16px;
+}
+
+.empty-state h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.empty-state ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  text-align: left;
+  font-size: 12px;
 }
 
 .chat-message-row {
@@ -286,6 +393,39 @@ onBeforeUnmount(() => {
 .typing {
   font-size: 13px;
   color: #2563eb;
+}
+
+@media (max-width: 1024px) {
+  .chat-page {
+    height: auto;
+    min-height: calc(100vh - 140px);
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-page {
+    padding-bottom: 4px;
+  }
+
+  .chat-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .chat-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .chat-messages {
+    padding: 12px;
+  }
+
+  .chat-input {
+    min-height: 60px;
+  }
 }
 </style>
 
