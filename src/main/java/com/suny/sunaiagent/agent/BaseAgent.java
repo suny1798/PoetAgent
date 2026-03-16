@@ -129,7 +129,7 @@ public abstract class BaseAgent {
 
                     //单步执行
                     String stepResult = step();
-                    String result = "Step " + stepNum + " result: " + stepResult;
+                    String result = "Step " + stepNum + "\n result: " + stepResult;
 
                     //输出每一步的结果 推送SSE 到前端
                     sseEmitter.send(result);

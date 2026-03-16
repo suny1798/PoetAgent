@@ -1,8 +1,12 @@
 package com.suny.sunaiagent.agent;
 
+import cn.hutool.core.collection.CollUtil;
 import com.suny.sunaiagent.agent.model.AgentState;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.ai.chat.messages.Message;
+
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -35,7 +39,8 @@ public abstract class ReActAgent extends BaseAgent{
             boolean shouldAct = think();
             if (!shouldAct) {
                 setState(AgentState.FINISHED);
-                return "思考结束 - 无需执行";
+                String string = this.getMessageList().getLast().getText();
+                return string;
             }
             //再执行
             return act();
