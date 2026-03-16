@@ -1,0 +1,30 @@
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import PoetChatView from '../views/PoetChatView.vue';
+import ManusChatView from '../views/ManusChatView.vue';
+
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/poet',
+    name: 'poet',
+    component: PoetChatView
+  },
+  {
+    path: '/manus',
+    name: 'manus',
+    component: ManusChatView
+  }
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
+export default router;
+
