@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: image-search-sever
+  profiles:
+    active: sse
+
