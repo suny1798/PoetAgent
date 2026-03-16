@@ -16,8 +16,7 @@
         <div class="footer-left">
           <div class="footer-logo">Sun AI Agent</div>
           <div class="footer-links">
-            <a href="https://www.codefather.cn" target="_blank" rel="noreferrer">编程导航</a>
-            <a href="https://www.mianshiya.com/" target="_blank" rel="noreferrer">面试鸭</a>
+            <a href="https://github.com/suny1798" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
         <div class="footer-right">

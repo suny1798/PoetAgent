@@ -130,7 +130,7 @@ onBeforeUnmount(() => {
 .chat-page {
   max-width: 960px;
   margin: 0 auto;
-  height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
 }
@@ -397,8 +397,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 1024px) {
   .chat-page {
-    height: auto;
-    min-height: calc(100vh - 140px);
+    min-height: calc(100vh - 120px);
   }
 }
 
