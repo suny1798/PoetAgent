@@ -25,6 +25,7 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.ai.vectorstore.filter.FilterExpressionBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.ai.tool.ToolCallbackProvider;
+import reactor.core.publisher.Flux;
 
 @Component
 @Slf4j
@@ -83,7 +84,7 @@ public class PoetApp {
     }
 
     /**
-     * AI 基础对话（支持多轮对话）
+     * AI 基础对话（支持多轮对话） 同步方法
      * @param message
      * @param chatId
      * @return
@@ -100,6 +101,24 @@ public class PoetApp {
         }
 //        log.info("content: {}",text);
         return text;
+    }
+
+    /**
+     * AI 基础对话（支持多轮对话） SSE异步传输  其他方式的对话（RAG Tool MAC 实现方式一样）
+     * @param message
+     * @param chatId
+     * @return
+     */
+    public Flux<String> doChatByStream(String message, String chatId){
+        //响应式传输
+        return chatClient.prompt()
+                .user(message)
+                .advisors(spec -> spec.param(ChatMemory.CONVERSATION_ID, chatId))
+                .stream()
+                .content();
+
+//        content1.subscribe(content-> log.info("content: {}",content));
+
     }
 
     record PoetReport(String title, String content){}
