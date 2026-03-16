@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref, onBeforeUnmount } from 'vue';
+import { ref, reactive, onBeforeUnmount } from 'vue';
 import ChatLayout from '../components/ChatLayout.vue';
 
 const API_BASE = 'http://localhost:8888/api';
@@ -49,7 +49,8 @@ const handleSend = (text) => {
     role: 'ai',
     content: ''
   };
-  messages.value.push(aiMsg);
+  const aiMsgReactive = reactive(aiMsg);
+  messages.value.push(aiMsgReactive);
 
   loading.value = true;
 
@@ -65,7 +66,7 @@ const handleSend = (text) => {
       closeStream();
       return;
     }
-    aiMsg.content += event.data;
+    aiMsgReactive.content += event.data;
   };
 
   eventSource.onerror = () => {

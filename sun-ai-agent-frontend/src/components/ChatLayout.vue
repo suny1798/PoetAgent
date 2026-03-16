@@ -24,7 +24,7 @@
           </div>
           <div class="bubble">
             <div class="bubble-content">
-              <pre>{{ msg.content }}</pre>
+              <div class="message-text">{{ msg.content }}</div>
             </div>
             <div class="bubble-meta">
               <span>{{ msg.role === 'user' ? '用户' : '智能体' }}</span>
@@ -131,19 +131,19 @@ onBeforeUnmount(() => {
 .chat-subtitle {
   margin: 0;
   font-size: 13px;
-  color: #9ca3af;
+  color: #475569;
 }
 
 .chat-meta {
   font-size: 12px;
-  color: #9ca3af;
+  color: #475569;
 }
 
 .badge {
   padding: 4px 8px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
 }
 
 .chat-body {
@@ -151,9 +151,8 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   border-radius: 18px;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  background: radial-gradient(circle at top, rgba(15, 118, 110, 0.2), transparent),
-    radial-gradient(circle at bottom, rgba(59, 130, 246, 0.2), transparent);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
   backdrop-filter: blur(8px);
   overflow: hidden;
 }
@@ -200,31 +199,34 @@ onBeforeUnmount(() => {
 .bubble-content {
   padding: 10px 12px;
   border-radius: 16px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  white-space: pre-wrap;
-  word-break: break-word;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .chat-message-row.is-user .bubble-content {
-  background: rgba(37, 99, 235, 0.9);
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.25);
 }
 
-.bubble-content pre {
-  margin: 0;
-  font-family: inherit;
+.message-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
 }
 
 .bubble-meta {
   margin-top: 4px;
   font-size: 11px;
-  color: #9ca3af;
+  color: #64748b;
 }
 
 .chat-input-area {
-  border-top: 1px solid rgba(148, 163, 184, 0.4);
+  border-top: 1px solid #e2e8f0;
   padding: 10px 12px;
-  background: rgba(15, 23, 42, 0.8);
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -236,17 +238,17 @@ onBeforeUnmount(() => {
   max-height: 160px;
   resize: vertical;
   border-radius: 12px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  border: 1px solid #cbd5e1;
   padding: 8px 10px;
-  background: rgba(15, 23, 42, 0.9);
-  color: #e5e7eb;
+  background: #ffffff;
+  color: #0f172a;
   font-size: 14px;
   outline: none;
 }
 
 .chat-input:focus {
-  border-color: rgba(59, 130, 246, 0.9);
-  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5);
+  border-color: rgba(59, 130, 246, 0.65);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .chat-actions {
@@ -277,13 +279,13 @@ onBeforeUnmount(() => {
 
 .btn-ghost {
   background: transparent;
-  border-color: rgba(148, 163, 184, 0.7);
-  color: #e5e7eb;
+  border-color: #cbd5e1;
+  color: #0f172a;
 }
 
 .typing {
   font-size: 13px;
-  color: #a5b4fc;
+  color: #2563eb;
 }
 </style>
 

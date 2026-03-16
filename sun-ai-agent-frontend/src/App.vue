@@ -23,13 +23,14 @@ import { RouterLink, RouterView } from 'vue-router';
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #0f172a, #020617);
-  color: #e5e7eb;
+  background: #f8fafc;
+  color: #0f172a;
 }
 
 .app-header {
   padding: 16px 24px;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.85);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,14 +54,15 @@ import { RouterLink, RouterView } from 'vue-router';
   padding: 6px 12px;
   border-radius: 9999px;
   font-size: 14px;
-  color: #e5e7eb;
+  color: #0f172a;
   text-decoration: none;
-  border: 1px solid transparent;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
 }
 
 .nav-link.router-link-active {
-  background: rgba(59, 130, 246, 0.15);
-  border-color: rgba(59, 130, 246, 0.7);
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.45);
 }
 
 .app-main {

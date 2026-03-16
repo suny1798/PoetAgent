@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref, onBeforeUnmount } from 'vue';
+import { ref, reactive, onBeforeUnmount } from 'vue';
 import ChatLayout from '../components/ChatLayout.vue';
 
 const API_BASE = 'http://localhost:8888/api';
@@ -44,13 +44,6 @@ const handleSend = (text) => {
   };
   messages.value.push(userMsg);
 
-  const aiMsg = {
-    id: `a-${Date.now()}`,
-    role: 'ai',
-    content: ''
-  };
-  messages.value.push(aiMsg);
-
   loading.value = true;
 
   const url = new URL(`${API_BASE}/ai/manus/chat`);
@@ -64,7 +57,17 @@ const handleSend = (text) => {
       closeStream();
       return;
     }
-    aiMsg.content += event.data;
+    const stepText = (event.data ?? '').toString();
+    if (!stepText.trim()) return;
+
+    // Manus: 每次 SSE 消息代表一个步骤，单独一个气泡
+    messages.value.push(
+      reactive({
+        id: `a-${Date.now()}-${Math.random().toString(16).slice(2, 6)}`,
+        role: 'ai',
+        content: stepText
+      })
+    );
   };
 
   eventSource.onerror = () => {

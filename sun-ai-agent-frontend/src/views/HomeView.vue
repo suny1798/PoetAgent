@@ -39,7 +39,7 @@ import { RouterLink } from 'vue-router';
 }
 
 .hero p {
-  color: #9ca3af;
+  color: #475569;
 }
 
 .cards {
@@ -52,9 +52,8 @@ import { RouterLink } from 'vue-router';
   display: block;
   padding: 20px;
   border-radius: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), transparent),
-    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.2), transparent);
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
   text-decoration: none;
   color: inherit;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
@@ -67,13 +66,13 @@ import { RouterLink } from 'vue-router';
 
 .card p {
   font-size: 14px;
-  color: #d1d5db;
+  color: #475569;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
-  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+  border-color: rgba(59, 130, 246, 0.4);
 }
 </style>
 
