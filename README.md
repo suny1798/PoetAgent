@@ -160,17 +160,19 @@ sun-ai-agent/
 │   │       ├── mcp-servers.json
 │   │       └── doc/
 │   └── test/
-└── image-search-sever/                         # 图片搜索 MCP 服务
-    └── src/
-        └── main/
-            ├── java/com/suny/imagesearchsever/
-            │   ├── ImageSearchSeverApplication.java
-            │   └── tools/
-            │       └── ImageSearchTool.java
-            └── resources/
-                ├── application.yml
-                ├── application-sse.yml
-                └── application-stdio.yml
+├── image-search-sever/                             # 图片搜索 MCP 服务
+│   └── src/
+│       └── main/
+│           ├── java/com/suny/imagesearchsever/
+│           │   ├── ImageSearchSeverApplication.java
+│           │   └── tools/
+│           │       └── ImageSearchTool.java
+│           └── resources/
+│               ├── application.yml
+│               ├── application-sse.yml
+│               └── application-stdio.yml
+└──sun-ai-agent-frontend/                           # 前端项目 由Cursor生成            
+               
 ```
 
 ## ⚙️ 配置说明
@@ -238,7 +240,7 @@ public class MyTool {
 @Bean
 public ToolCallback[] allTools() {
     return ToolCallbacks.from(
-        new MyTool(),
+        new MyTool()
         // 其他工具...
     );
 }

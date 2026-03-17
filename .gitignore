@@ -1156,3 +1156,4 @@ build/
 /sun-ai-agent-frontend/node_modules/vue-router/vue-router-auto-resolver.d.mts
 /sun-ai-agent-frontend/node_modules/vue-router/vue-router-auto-routes.d.ts
 /sun-ai-agent-frontend/node_modules/.package-lock.json
+/sun-ai-agent-frontend/dist/
